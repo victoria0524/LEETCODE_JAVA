@@ -1,0 +1,39 @@
+public class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) 
+    {
+        ArrayList<Integer> result=new ArrayList<Integer>();
+        
+        if(root==null)
+            return result;
+        
+        Stack<TreeNode> s= new Stack<TreeNode>();
+        s.push(root);
+        
+        while(s.size()!=0)
+        {
+            TreeNode curr=s.peek();
+            
+            if(curr.left== null && curr.right==null)
+            {
+                result.add(curr.val);
+                s.pop();
+            }
+            
+            if(curr.left!=null)
+            {
+                s.push(curr.left);
+                curr.left=null;
+                continue;
+            }
+            
+            if(curr.right!=null)
+            {
+                s.push(curr.right);
+                curr.right=null;
+                continue;
+            }
+        }
+        
+        return result;
+    }
+}
