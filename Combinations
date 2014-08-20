@@ -1,0 +1,27 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> combine(int n, int k) 
+    {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(n<1 || k<1)
+        return result;
+        
+        ArrayList<Integer> temp=new ArrayList<Integer>();
+        
+        
+        helper(result,temp,1,n,k);
+        return result;
+    }
+    
+    private void helper(ArrayList<ArrayList<Integer>> result,ArrayList<Integer>temp,int start,int n, int k)
+    {
+        if(temp.size()==k)
+        result.add(new ArrayList<Integer>(temp));
+        
+        for(int i=start;i<=n;i++)
+        {
+            temp.add(i);
+            helper(result,temp,i+1,n,k);
+            temp.remove(temp.size()-1);
+        }
+    }
+}
