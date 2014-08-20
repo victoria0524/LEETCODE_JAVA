@@ -1,0 +1,34 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) 
+    {
+        ArrayList<ArrayList<Integer>> result= new ArrayList<ArrayList<Integer>> ();
+        ArrayList<Integer> temp=new ArrayList<Integer>();
+        boolean []visit=new boolean[num.length];
+        Arrays.sort(num);
+        helper(visit, num, temp, result);
+        return result;
+    }
+    
+    private void helper(boolean []visit,int[] num,ArrayList<Integer> temp,ArrayList<ArrayList<Integer>> result)
+    {
+        if(temp.size()==num.length)
+        result.add(new ArrayList<Integer>(temp));
+
+        
+        for(int i=0; i<num.length; i++)
+        {   Integer a=num[i];
+            if(visit[i])
+            continue;
+            
+            temp.add(a);
+            visit[i]=true;
+            helper(visit,num,temp,result);
+            visit[i]=false;
+            temp.remove(temp.size()-1);
+            
+            while(i+1<num.length && num[i]==num[i+1])
+            i++;
+            
+        }
+    }
+}
