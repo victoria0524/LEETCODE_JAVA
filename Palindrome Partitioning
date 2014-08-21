@@ -1,0 +1,49 @@
+public class Solution {
+    public ArrayList<ArrayList<String>> partition(String s) 
+    {
+        ArrayList<ArrayList<String>> result=new ArrayList<ArrayList<String>>();
+        
+        if(s.length()==0)
+            return result;
+            
+        ArrayList<String> temp = new ArrayList<String>();
+        
+        helper(0,s,temp,result);
+        return result;
+    }
+    
+    private void helper(int step, String s, ArrayList<String> temp, ArrayList<ArrayList<String>> result)
+    {
+        if(step==s.length())
+        result.add(new ArrayList<String>(temp));
+
+        
+        for(int i=step+1; i<=s.length(); i++)
+        {
+            String sub=s.substring(step,i);
+            if(isP(sub))
+            {
+                temp.add(sub);
+                helper(i,s,temp,result);
+                temp.remove(temp.size()-1);
+            }
+        }
+    }
+    
+    private boolean isP(String s)
+    {
+        int start=0,end=s.length()-1;
+        
+        while(start<end)
+        {
+            if(s.charAt(start)!=s.charAt(end))
+            return false;
+            
+            start++;
+            end--;
+        }
+        
+        return true;
+    }
+    
+}
