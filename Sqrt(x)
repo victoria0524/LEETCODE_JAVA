@@ -1,0 +1,23 @@
+public class Solution {
+    public int sqrt(int x) {
+        
+        long x1=0, x2=x/2+1;
+        
+        while(x1<=x2)
+        {
+            long mid=(x1+x2)/2;
+            long sqr=mid*mid;
+            
+            if(sqr==x) 
+            return (int)mid;
+            else if (sqr>x)
+            x2=mid-1;
+            else
+            x1=mid+1;
+            
+        }
+        
+        return (int)x2;
+        
+    }
+}
