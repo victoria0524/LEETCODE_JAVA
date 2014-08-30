@@ -13,3 +13,28 @@ public class Solution {
         return max;
     }
 }
+
+NO EXTRA SPACE:
+
+public class Solution 
+{  
+    public int maxSubArray(int[] A) 
+    {  
+        if(A.length==0 ||A==null)
+        return (Integer) null;
+        
+        int sum=A[0],max=A[0];
+        
+        for(int i=1;i<A.length;i++)
+        {
+            if(sum<0)
+                sum=A[i];
+            else 
+                sum+=A[i];
+                
+            max=Math.max(max,sum);
+        }
+        
+        return max;
+    }  
+}  
