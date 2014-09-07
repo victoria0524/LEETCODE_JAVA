@@ -1,0 +1,33 @@
+public class Solution {
+    public int maxProfit(int[] prices) 
+    {
+        int n=prices.length;
+        if(n<2)
+        return 0;
+        
+        int[]low=new int[n];
+        int[]high=new int[n];
+        low[0]=0;
+        high[n-1]=0;
+        
+        int min=prices[0],max=prices[n-1],profit=0;
+        
+        for(int i=1;i<n;i++)
+        {
+            low[i]=Math.max(low[i-1],prices[i]-min);
+            min=Math.min(min,prices[i]);
+        }
+        
+        for(int j=n-2;j>0;j--)
+        {
+            high[j]=Math.max(high[j+1],max-prices[j]);
+            max=Math.max(max,prices[j]);
+        }
+        
+        for(int k=0;k<n;k++)
+        profit=Math.max(profit,low[k]+high[k]);
+        
+        return profit;
+        
+    }
+}
