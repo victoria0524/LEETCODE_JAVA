@@ -1,0 +1,50 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> threeSum(int[] num) 
+    {
+        ArrayList<ArrayList<Integer>> result=new ArrayList<ArrayList<Integer>>();
+        
+        if(num==null || num.length<3)
+        return result;
+        
+        Arrays.sort(num);
+       
+        for(int i=0; i<num.length-2; i++)
+        {
+            
+            if(i==0 || num[i]>num[i-1])
+            {
+                int s=i+1, j=num.length-1, target=-num[i];
+                
+                while(s<j)
+                {
+                    if(num[s]+num[j]==target)
+                    {
+                        ArrayList<Integer> temp = new ArrayList<Integer>();
+                        temp.add(num[i]);
+                        temp.add(num[s]);
+                        temp.add(num[j]);
+                        result.add(temp);
+                        
+                        s++;
+                        j--;
+                        
+                        while(s<j && num[s]==num[s-1])
+                        s++;
+                        
+                        while(s<j && num[j]==num[j+1])
+                        j--;
+                    }
+                    
+                    else if(num[s]+num[j]>target)
+                        j--;
+                    
+                    else
+                        s++;
+                    
+                    
+                }
+            }
+        }
+        return result;
+    }
+}
