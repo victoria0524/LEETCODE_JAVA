@@ -1,0 +1,35 @@
+public class Solution {
+    public int[] plusOne(int[] digits) 
+    {
+        if(digits==null || digits.length==0)
+        return digits;
+        
+        int len=digits.length-1, count=0;
+        
+        while(len>=0)
+        {
+            if(digits[len]==9)
+            {
+                digits[len]=0;
+                count++;
+                len--;
+            }
+            else
+            {
+                digits[len]=digits[len]+1;
+                break;
+            }
+        }
+        
+        if(count==digits.length)
+        {
+        int[]result=new int[digits.length+1];
+        result[0]=1;
+        for(int i=0;i<digits.length;i++)
+        result[i+1]=digits[i];
+        return result;
+        }
+        
+        return digits;
+    }
+}
