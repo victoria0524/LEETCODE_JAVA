@@ -1,0 +1,30 @@
+public class Solution {
+    public int findMin(int[] num) 
+    {
+        int r=num.length-1;
+        int l=0;
+        int min=num[0];
+        int m;
+        
+        while(l<r)
+        {
+            m=(r+l)/2;
+            
+            if(num[l]>num[m])
+            {
+                min=Math.min(num[m],min);
+                r=m-1;
+            }
+            else
+            {
+                min=Math.min(num[l],min);
+                l=m+1;
+            }
+        }
+        
+        min=Math.min(num[r],min);
+        
+        return min;
+        
+    }
+}
