@@ -1,0 +1,31 @@
+binary search, runtime O(nlogn)
+class Solution {
+    public int findDuplicate(int[] nums) 
+    {
+        int l=0,u=nums.length-1;
+        while(l<=u)
+        {
+            int m=(l+u)/2;
+            int count=0;
+            
+            for(int i:nums)
+            {
+                if(i<=m)
+                    count++;
+            }
+            if(count>m)
+            {
+                u=m-1;
+            }
+            else
+            {    
+                l=m+1;
+            }
+        }
+        
+        return l;
+        
+    }
+}
+
+Floyd's Algorithm, runtime O(n)
