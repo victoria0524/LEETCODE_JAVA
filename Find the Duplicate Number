@@ -29,3 +29,26 @@ class Solution {
 }
 
 Floyd's Algorithm, runtime O(n)
+
+class Solution {
+    public int findDuplicate(int[] nums) 
+    {
+        int slow=0;
+        int fast=0;
+        
+        do
+        {
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        } while(fast!=slow);
+        
+           int res=0;
+       while(res!=slow)
+        {
+            res=nums[res];
+            slow=nums[slow];
+            
+        }
+        return res;
+    }
+}
