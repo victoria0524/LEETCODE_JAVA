@@ -1,0 +1,37 @@
+class Solution {
+    public String licenseKeyFormatting(String S, int K) 
+    {
+        char[] c=S.toCharArray();
+        StringBuffer b=new StringBuffer("");
+        int len=0;
+        
+        for(int i=c.length-1;i>= 0;i--)
+        {
+            if(c[i]=='-')
+                continue;
+            if(c[i]>='a')
+            {    c[i]=(char)(c[i]-32);
+            
+            }
+            
+            b.append(c[i]);
+            len++;
+            
+            
+            if(len==K)
+            {   b.append('-');
+             len=0;
+            }
+            
+            
+        }
+        
+        if(b.length()>0 && b.charAt(b.length()-1)=='-')
+        {   b.deleteCharAt(b.length()-1);
+
+        }
+        
+        return b.reverse().toString();
+        
+    }
+}
