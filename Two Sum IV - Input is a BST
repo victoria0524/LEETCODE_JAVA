@@ -1,0 +1,39 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean findTarget(TreeNode root, int k) 
+    {
+        Set<Integer> hs = new HashSet<>();
+        Stack<TreeNode> st= new Stack<>();
+        
+        while(!st.empty() || root != null)
+        {
+            if(root != null)
+            { 
+                int temp=root.val;
+                if(hs.contains(temp))
+                    return true;
+                else
+                    hs.add(k-temp);
+                
+                st.push(root);
+                root=root.left;
+            }
+            
+            else
+            {
+               TreeNode curr=st.pop();
+                root=curr.right;
+            }
+        }
+        
+        return false;
+    }
+}
