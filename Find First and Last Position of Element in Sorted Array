@@ -1,0 +1,54 @@
+class Solution 
+{
+    public int[] searchRange(int[] nums, int target) 
+    {
+        if(nums.length==0)
+        {
+            return new int[] {-1, -1};
+        }
+        int low=0,mid=0,high=nums.length-1;
+        while(low<=high)
+        {
+            mid=(low+high)/2;
+            if(nums[mid]==target)
+            {
+                break;
+            }
+            else if(nums[mid]>target)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        
+        if(nums[mid] != target) 
+        {
+            return new int[] {-1, -1};
+        }
+        
+        int l=mid,h=mid;
+        while(l>=0 ||h<nums.length)
+        {
+            boolean match=false;
+            if(l>0 && nums[l-1]==target)
+            {
+                l--;
+                match=true;
+            }
+            if(h<nums.length-1 && nums[h+1]==target)
+            {
+                h++;
+                match=true;
+            }
+            if(!match)
+            {
+                break;
+            }
+        }
+        return new int[]{l,h};
+        
+    }
+}
