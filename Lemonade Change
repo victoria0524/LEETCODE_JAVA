@@ -1,0 +1,41 @@
+class Solution {
+    public boolean lemonadeChange(int[] bills) 
+    {
+        int bill5=0,bill10=0;
+        
+        for(int i=0; i<bills.length;i++)
+        {
+            if(bills[i]==5)
+                bill5++;
+            else if (bills[i]==10)
+            {
+                bill10++;
+                while(bill5>0 && bills[i]>5)
+                {
+                    bill5--;
+                    bills[i]-=5;
+                }
+                if(bills[i]>5)
+                    return false;
+            }
+            else
+            {
+                while(bill10>0 && bills[i]>10)
+                {
+                    bill10--;
+                    bills[i]-=10;
+                }
+                while(bill5>0 && bills[i]>5)
+                {
+                    bill5--;
+                    bills[i]-=5;
+                }
+                if(bills[i]>5)
+                    return false;
+                
+            }
+        }
+        
+        return true;
+    }
+}
