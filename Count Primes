@@ -1,0 +1,25 @@
+class Solution {
+    public int countPrimes(int n) 
+    {
+        if(n<=2) return 0;
+        int result=0;
+        
+        boolean[] visit= new boolean[n];
+        
+        for(int i=2;i*i<n;i++)
+        {
+            if(visit[i])
+                continue;
+            for(int j=i;i*j<n;j++)
+                visit[i*j]=true;
+        }
+        
+        for(int k=2;k<n;k++)
+        {
+            if(!visit[k])
+                result++;
+        }
+        return result;
+
+    }
+}
