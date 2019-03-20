@@ -1,0 +1,13 @@
+class Solution {
+    public int search(int[] nums, int target) 
+    {
+       HashMap<Integer,Integer> hs= new HashMap<Integer,Integer>();
+        for(int i =0; i<nums.length;i++)
+            hs.put(nums[i],i);
+        
+        if(hs.containsKey(target))
+            return hs.get(target);
+        
+        return -1;
+    }
+}
